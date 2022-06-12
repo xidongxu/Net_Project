@@ -9,3 +9,14 @@
 /H7_NetxDuo/MDK-ARM/H7_NetxDuo/*.sct
 /H7_NetxDuo/MDK-ARM/H7_NetxDuo/*.dep
 /H7_NetxDuo/MDK-ARM/*.xdx
+/H7_NetxDuo_FileX/MDK-ARM/H7_NetxDuo_FileX/*.o
+/H7_NetxDuo_FileX/MDK-ARM/H7_NetxDuo_FileX/*.d
+/H7_NetxDuo_FileX/MDK-ARM/H7_NetxDuo_FileX/*.iex
+/H7_NetxDuo_FileX/MDK-ARM/H7_NetxDuo_FileX/*.axf
+/H7_NetxDuo_FileX/MDK-ARM/H7_NetxDuo_FileX/*.htm
+/H7_NetxDuo_FileX/MDK-ARM/H7_NetxDuo_FileX/*.hex
+/H7_NetxDuo_FileX/MDK-ARM/H7_NetxDuo_FileX/*.lnp
+/H7_NetxDuo_FileX/MDK-ARM/H7_NetxDuo_FileX/*.map
+/H7_NetxDuo_FileX/MDK-ARM/H7_NetxDuo_FileX/*.sct
+/H7_NetxDuo_FileX/MDK-ARM/H7_NetxDuo_FileX/*.dep
+/H7_NetxDuo_FileX/MDK-ARM/*.xdx
