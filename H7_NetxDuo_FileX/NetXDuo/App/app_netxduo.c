@@ -34,21 +34,19 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define  APP_CFG_TASK_NETX_PRIO      5u    
-#define  APP_CFG_TASK_NETX_STK_SIZE  4096u
+#define APP_CFG_TASK_NETX_PRIO      5u    
+#define APP_CFG_TASK_NETX_STK_SIZE  4096u
 static uint64_t AppTaskNetXStk[APP_CFG_TASK_NETX_STK_SIZE / 8];
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define DEFAULT_PORT      8090
-
+#define IP_PORT           8090
 #define IP_ADDR0          192
 #define IP_ADDR1          168
 #define IP_ADDR2          0
 #define IP_ADDR3          24
-
-#define  MAX_TCP_CLIENTS  1
+#define  MAX_TCP_CLIENTS  255
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -63,25 +61,23 @@ ULONG packet_pool_area[NX_PACKET_POOL_SIZE/4 + 4];
 ULONG arp_space_area[512 / sizeof(ULONG)];                                                      
 ULONG error_counter;
 
-NX_TCP_SOCKET TCPSocket;
-TX_SEMAPHORE Semaphore;
+NX_TCP_SOCKET netx_tcp_socket;
+TX_SEMAPHORE  netx_tcp_sem;
 
-#define PRINT_DATA(addr, port, data) do {                                                \
-                                            printf("[%lu.%lu.%lu.%lu:%u] -> '%s' \r\n", \
-                                            (addr >> 24) & 0xff,                        \
-                                            (addr >> 16) & 0xff,                        \
-                                            (addr >> 8) & 0xff,                         \
-                                            (addr & 0xff), port, data);                 \
-                                        } while(0)
+#define PRINT_DATA(addr, port, data) \
+do \
+{ \
+  printf("[%lu.%lu.%lu.%lu:%u] -> '%s' \r\n", \
+  (addr >> 24) & 0xff, (addr >> 16) & 0xff, (addr >>  8) & 0xff, (addr >>  0) & 0xff, port, data); \
+} while(0)
 
-extern TX_THREAD   AppTaskNetXProTCB;
-extern TX_THREAD   *netx_thread_ptr;                                               
+extern TX_THREAD *netx_thread_ptr;                                               
 extern VOID nx_stm32_eth_driver(NX_IP_DRIVER *driver_req_ptr);
 static VOID tcp_listen_callback(NX_TCP_SOCKET *socket_ptr, UINT port);
 
-TX_THREAD thread_1;
-UCHAR thread_1_stack[1024] = { 0 };
-void thread_1_entry(ULONG thread_input);
+TX_THREAD thread_netx;
+UCHAR thread_netx_stack[1024] = { 0 };
+void thread_netx_entry(ULONG thread_input);
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -103,14 +99,14 @@ UINT MX_NetXDuo_Init(VOID *memory_ptr)
   /* USER CODE END MX_NetXDuo_MEM_POOL */
 
   /* USER CODE BEGIN MX_NetXDuo_Init */
-  tx_thread_create(&thread_1, "thread 1", thread_1_entry, 0, thread_1_stack, sizeof(thread_1_stack), 1, 1, TX_NO_TIME_SLICE, TX_AUTO_START);
+  tx_thread_create(&thread_netx, "thread 1", thread_netx_entry, 0, thread_netx_stack, sizeof(thread_netx_stack), 1, 1, TX_NO_TIME_SLICE, TX_AUTO_START);
   /* USER CODE END MX_NetXDuo_Init */
 
   return ret;
 }
 
 /* USER CODE BEGIN 1 */
-void thread_1_entry(ULONG thread_input)
+void thread_netx_entry(ULONG thread_input)
 {
   UINT status;
   UINT ret;
@@ -123,7 +119,7 @@ void thread_1_entry(ULONG thread_input)
   UINT source_port;
   ULONG bytes_read;
   
-  tx_semaphore_create(&Semaphore, "App Semaphore", 0);
+  tx_semaphore_create(&netx_tcp_sem, "netx_tcp_sem", 0);
 
   nx_system_initialize();
 
@@ -152,7 +148,7 @@ void thread_1_entry(ULONG thread_input)
   status = nx_icmp_enable(&ip_0);
   printf("nx icmp enable status = %d\r\n", status);
   ret = nx_tcp_socket_create(&ip_0, 
-                             &TCPSocket, 
+                             &netx_tcp_socket, 
                              "TCP Server Socket", 
                              NX_IP_NORMAL, 
                              NX_FRAGMENT_OKAY,
@@ -164,18 +160,18 @@ void thread_1_entry(ULONG thread_input)
   {
     printf("File: %s in %d is error!\r\n",__FILE__, __LINE__);
   }
-  ret = nx_tcp_server_socket_listen(&ip_0, DEFAULT_PORT, &TCPSocket, MAX_TCP_CLIENTS, tcp_listen_callback);
+  ret = nx_tcp_server_socket_listen(&ip_0, IP_PORT, &netx_tcp_socket, MAX_TCP_CLIENTS, tcp_listen_callback);
   if(ret)
   {
     printf("File: %s in %d is error!\r\n",__FILE__, __LINE__);
   }
-  if(tx_semaphore_get(&Semaphore, TX_WAIT_FOREVER) != TX_SUCCESS)
+  if(tx_semaphore_get(&netx_tcp_sem, TX_WAIT_FOREVER) != TX_SUCCESS)
   {
     
   }
   else
   {
-    ret = nx_tcp_server_socket_accept(&TCPSocket, TX_WAIT_FOREVER);
+    ret = nx_tcp_server_socket_accept(&netx_tcp_socket, TX_WAIT_FOREVER);
     if (ret)
     {
       printf("File: %s in %d is error!\r\n",__FILE__, __LINE__);
@@ -184,20 +180,20 @@ void thread_1_entry(ULONG thread_input)
   while(1)
   {
     TX_MEMSET(data_buffer, '\0', sizeof(data_buffer));
-    nx_tcp_socket_info_get(&TCPSocket, NULL, NULL, NULL, NULL, NULL, NULL, NULL, &socket_state, NULL, NULL, NULL);
+    nx_tcp_socket_info_get(&netx_tcp_socket, NULL, NULL, NULL, NULL, NULL, NULL, NULL, &socket_state, NULL, NULL, NULL);
     if(socket_state != NX_TCP_ESTABLISHED)
     {
-      ret = nx_tcp_server_socket_accept(&TCPSocket, NX_IP_PERIODIC_RATE);
+      ret = nx_tcp_server_socket_accept(&netx_tcp_socket, NX_IP_PERIODIC_RATE);
     }
     if(ret == NX_SUCCESS)
     {
-      ret = nx_tcp_socket_receive(&TCPSocket, &data_packet, NX_WAIT_FOREVER);
+      ret = nx_tcp_socket_receive(&netx_tcp_socket, &data_packet, NX_WAIT_FOREVER);
       if (ret == NX_SUCCESS)
       {
         nx_udp_source_extract(data_packet, &source_ip_address, &source_port);
         nx_packet_data_retrieve(data_packet, data_buffer, &bytes_read);
         PRINT_DATA(source_ip_address, source_port, data_buffer);
-        ret =  nx_tcp_socket_send(&TCPSocket, data_packet, NX_IP_PERIODIC_RATE);
+        ret =  nx_tcp_socket_send(&netx_tcp_socket, data_packet, NX_IP_PERIODIC_RATE);
         if (ret == NX_SUCCESS)
         {
 
@@ -206,9 +202,9 @@ void thread_1_entry(ULONG thread_input)
       }
       else
       {
-        nx_tcp_socket_disconnect(&TCPSocket, NX_WAIT_FOREVER);
-        nx_tcp_server_socket_unaccept(&TCPSocket);
-        nx_tcp_server_socket_relisten(&ip_0, DEFAULT_PORT, &TCPSocket);
+        nx_tcp_socket_disconnect(&netx_tcp_socket, NX_WAIT_FOREVER);
+        nx_tcp_server_socket_unaccept(&netx_tcp_socket);
+        nx_tcp_server_socket_relisten(&ip_0, IP_PORT, &netx_tcp_socket);
       }
     }
     else
@@ -220,7 +216,7 @@ void thread_1_entry(ULONG thread_input)
 
 static VOID tcp_listen_callback(NX_TCP_SOCKET *socket_ptr, UINT port)
 {
-  tx_semaphore_put(&Semaphore);
+  tx_semaphore_put(&netx_tcp_sem);
 }   
 
 /* USER CODE END 1 */
