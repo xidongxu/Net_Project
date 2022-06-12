@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>H7_NetxDuo</TargetName>
+      <TargetName>H7_NetxDuo_FileX</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>6150000::V6.15::ARMCLANG</pCCUsed>
@@ -48,8 +48,8 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>H7_NetxDuo\</OutputDirectory>
-          <OutputName>H7_NetxDuo</OutputName>
+          <OutputDirectory>H7_NetxDuo_FileX\</OutputDirectory>
+          <OutputName>H7_NetxDuo_FileX</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -40388,7 +40388,7 @@
       <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="4.3.0" condition="CMSIS Core">
         <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="4.5.0"/>
         <targetInfos>
-          <targetInfo name="H7_NetxDuo"/>
+          <targetInfo name="H7_NetxDuo_FileX"/>
         </targetInfos>
       </component>
     </components>

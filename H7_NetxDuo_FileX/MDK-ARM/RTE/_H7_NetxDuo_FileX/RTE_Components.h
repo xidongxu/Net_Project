@@ -3,8 +3,8 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'H7_NetxDuo' 
- * Target:  'H7_NetxDuo' 
+ * Project: 'H7_NetxDuo_FileX' 
+ * Target:  'H7_NetxDuo_FileX' 
  */
 
 #ifndef RTE_COMPONENTS_H

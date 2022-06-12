@@ -22,7 +22,7 @@
   </DaveTm>
 
   <Target>
-    <TargetName>H7_NetxDuo</TargetName>
+    <TargetName>H7_NetxDuo_FileX</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
@@ -179,7 +179,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>../Middlewares/ST/netxduo/common/drivers/ethernet/nx_stm32_eth_driver.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\H7_NetxDuo\../Middlewares/ST/netxduo/common/drivers/ethernet/nx_stm32_eth_driver.c\1708</Expression>
+          <Expression>\\H7_NetxDuo_FileX\../Middlewares/ST/netxduo/common/drivers/ethernet/nx_stm32_eth_driver.c\1708</Expression>
         </Bp>
       </Breakpoint>
       <Tracepoint>
