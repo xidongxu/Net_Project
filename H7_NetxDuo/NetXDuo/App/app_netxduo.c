@@ -131,7 +131,7 @@ void thread_1_entry(ULONG thread_input)
 																 "NetX Main Packet Pool",
 																 1536,  (ULONG*)(((int)packet_pool_area + 15) & ~15),
 																 NX_PACKET_POOL_SIZE);
-	printf("nx packet pool create status = %d\r\n", status);
+	printf("nx_packet_pool_create..status = %d\r\n", status);
 	status = nx_ip_create(&ip_0,
 												"NetX IP Instance 0",
 												IP_ADDRESS(IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3),
@@ -140,17 +140,17 @@ void thread_1_entry(ULONG thread_input)
 												(UCHAR*)AppTaskNetXStk,
 												sizeof(AppTaskNetXStk),
 												APP_CFG_TASK_NETX_PRIO);
-	printf("nx ip create status = %d\r\n", status);
+	printf("nx_ip_create...........status = %d\r\n", status);
 	status = nx_arp_enable(&ip_0, (void *)arp_space_area, sizeof(arp_space_area));
-	printf("nx arp enable status = %d\r\n", status);
+	printf("nx_arp_enable..........status = %d\r\n", status);
 	status = nx_ip_fragment_enable(&ip_0);
-	printf("nx ip enable status = %d\r\n", status);
+	printf("nx_ip_enable...........status = %d\r\n", status);
 	status = nx_tcp_enable(&ip_0);
-	printf("nx tcp enable status = %d\r\n", status);
+	printf("nx_tcp_enable..........status = %d\r\n", status);
 	status = nx_udp_enable(&ip_0);
-	printf("nx udp enable status = %d\r\n", status);
+	printf("nx_udp_enable..........status = %d\r\n", status);
 	status = nx_icmp_enable(&ip_0);
-	printf("nx icmp enable status = %d\r\n", status);
+	printf("nx_icmp_enable.........status = %d\r\n", status);
 	ret = nx_tcp_socket_create(&ip_0, 
 														 &TCPSocket, 
 														 "TCP Server Socket", 

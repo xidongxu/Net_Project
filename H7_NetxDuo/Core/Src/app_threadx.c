@@ -25,23 +25,32 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include "gpio.h"
+#include "w25qxx.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+extern TIM_HandleTypeDef htim1;
+extern ETH_HandleTypeDef heth;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+/* Boot Jump To App Address */
+#define VECT_TAB_OFFSET       0x00000000UL
+#define APPLICATION_ADDRESS   (uint32_t)0x90000000
+/* Trace Buffer Size */
+#define TRC_BUF_SIZE        (1024*32)
+#define TRC_MAX_OBJ_COUNT   (40)
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define TRC_BUF_SIZE        (1024*32)
-#define TRC_MAX_OBJ_COUNT   (40)
+/* Trace Buffer */
 UCHAR Trace_Buffer[TRC_BUF_SIZE] = { 0 };
+/* Boot Jump To App Function */
+typedef void (*pFunction)(void);
+pFunction JumpToApplication;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -96,14 +105,46 @@ void MX_ThreadX_Init(void)
 }
 
 /* USER CODE BEGIN 1 */
+void boot_jump_to_app(void)
+{
+  /* QSPI Flash Init */
+  W25QXX_Init();
+  W25Q_Memory_Mapped_Enable();
+  
+  HAL_Delay(100);
+  /* Deinit Interrupt And Jump to Application */
+  HAL_RCC_DeInit();
+  HAL_TIM_Base_DeInit(&htim1);
+  HAL_ETH_DeInit(&heth);
+  
+  SysTick->VAL = 0;
+  __set_CONTROL(0);
+  __disable_irq();
+
+  JumpToApplication = (pFunction)(*(__IO uint32_t *)(APPLICATION_ADDRESS + 4));
+  __set_MSP(*(__IO uint32_t *)APPLICATION_ADDRESS);
+
+  JumpToApplication();
+}
+
 void thread_0_entry(ULONG thread_input)
 {
+  static uint32_t time = 3;
+  
 	while(1)
 	{
 		HAL_GPIO_WritePin(GPIOI, GPIO_PIN_8, GPIO_PIN_SET);
-		tx_thread_sleep(1300);
+		tx_thread_sleep(750);
 		HAL_GPIO_WritePin(GPIOI, GPIO_PIN_8, GPIO_PIN_RESET);
-		tx_thread_sleep(200);
+		tx_thread_sleep(250);
+    /* delay 5 seconds jump to app */
+    printf("time remaining:%d\r\n", time);
+    time = time - 1;
+    if(time == 0)
+    {
+      printf("now start jump to application!\r\n");
+      boot_jump_to_app();
+    }
 	}
 }
 /* USER CODE END 1 */
