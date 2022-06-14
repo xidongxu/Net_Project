@@ -59,7 +59,18 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+static void printf_logo(void)
+{
+  printf("                                                                 \r\n");
+  printf("       _   __       __  _  __    ____   ____   ____  ______      \r\n");
+  printf("      / | / /___   / /_| |/ /   / __ ) / __ \\ / __ \\/_  __/    \r\n");
+  printf("     /  |/ // _ \\ / __/|   /   / __  |/ / / // / / / / /        \r\n");
+  printf("    / /|  //  __// /_ /   |   / /_/ // /_/ // /_/ / / /          \r\n");
+  printf("   /_/ |_/ \\___/ \\__//_/|_|  /_____/ \\____/ \\____/ /_/       \r\n");
+  printf("                                                                 \r\n");
+  printf("                This is NetxDuo BootLoader                       \r\n");
+  printf("                                                                 \r\n");
+}
 /* USER CODE END 0 */
 
 /**
@@ -69,7 +80,7 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+  
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -97,8 +108,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   W25QXX_ExitQPIMode();
   W25QXX_Reset();
-  
-  printf("hello world!\r\n");
+  /* print bootloader logo infomation */
+  printf_logo();
   /* USER CODE END 2 */
 
   MX_ThreadX_Init();

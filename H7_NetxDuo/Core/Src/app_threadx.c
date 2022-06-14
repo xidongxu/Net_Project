@@ -110,8 +110,8 @@ void boot_jump_to_app(void)
   /* QSPI Flash Init */
   W25QXX_Init();
   W25Q_Memory_Mapped_Enable();
-  
   HAL_Delay(100);
+  __set_PRIMASK(1);
   /* Deinit Interrupt And Jump to Application */
   HAL_RCC_DeInit();
   HAL_TIM_Base_DeInit(&htim1);
@@ -119,7 +119,6 @@ void boot_jump_to_app(void)
   
   SysTick->VAL = 0;
   __set_CONTROL(0);
-  __disable_irq();
 
   JumpToApplication = (pFunction)(*(__IO uint32_t *)(APPLICATION_ADDRESS + 4));
   __set_MSP(*(__IO uint32_t *)APPLICATION_ADDRESS);
