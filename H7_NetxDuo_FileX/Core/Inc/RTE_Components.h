@@ -23,9 +23,14 @@
 
 /* Defines ------------------------------------------------------------------*/
 /* STMicroelectronics.X-CUBE-AZRTOS-H7.2.1.0 */
+#define FILEX_ENABLED
+#define LX_NOR_ENABLED
+#define FX_LX_NOR_INTERFACE
+#define LX_NOR_SIMULATOR_DRIVER
 NX_ETH_INTERFACE_ENABLED
 #define LAN8742
 #define THREADX_ENABLED
 #define NETXDUO_ENABLED
+#define NX_ADDONS_WEB_SERVER_ENABLED
 
 #endif /* __RTE_COMPONENTS_H__ */

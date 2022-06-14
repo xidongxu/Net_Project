@@ -19,8 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "app_threadx.h"
-#include "crc.h"
 #include "eth.h"
+#include "spi.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -107,7 +107,7 @@ int main(void)
   MX_GPIO_Init();
   MX_UART4_Init();
   MX_ETH_Init();
-  MX_CRC_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
   printf_Logo();
   /* USER CODE END 2 */
@@ -144,6 +144,10 @@ void SystemClock_Config(void)
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE0);
 
   while(!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY)) {}
+
+  /** Macro to configure the PLL clock source
+  */
+  __HAL_RCC_PLL_PLLSOURCE_CONFIG(RCC_PLLSOURCE_HSE);
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
