@@ -1,5 +1,6 @@
 #MicroXplorer Configuration settings - do not modify
-CORTEX_M7.IPParameters=default_mode_Activation
+CORTEX_M7.IPParameters=default_mode_Activation,MPU_Control
+CORTEX_M7.MPU_Control=__NULL
 CORTEX_M7.default_mode_Activation=1
 ETH.IPParameters=MediaInterface,MACAddr
 ETH.MACAddr=A0\:B0\:C0\:D0\:E0\:F0
