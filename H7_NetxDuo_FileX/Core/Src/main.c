@@ -65,11 +65,14 @@ static void interrupt_vector_table(void)
 
 static void printf_Logo(void)
 {
+  printf("                                                          \r\n");
   printf("       _   __       __  _  __    ___     ____   ____      \r\n");
   printf("      / | / /___   / /_| |/ /   /   |   / __ \\ / __ \\   \r\n");
   printf("     /  |/ // _ \\ / __/|   /   / /| |  / /_/ // /_/ /    \r\n");
   printf("    / /|  //  __// /_ /   |   / ___ | / ____// ____/      \r\n");
   printf("   /_/ |_/ \\___/ \\__//_/|_|  /_/  |_|/_/    /_/         \r\n");
+  printf("                                                          \r\n");
+  printf("              This Is NetxDuo Application.                \r\n");
   printf("                                                          \r\n");
 }
 /* USER CODE END 0 */
@@ -107,7 +110,6 @@ int main(void)
   MX_CRC_Init();
   /* USER CODE BEGIN 2 */
   printf_Logo();
-  printf("this is NetxDuo application!\r\n");
   /* USER CODE END 2 */
 
   MX_ThreadX_Init();
