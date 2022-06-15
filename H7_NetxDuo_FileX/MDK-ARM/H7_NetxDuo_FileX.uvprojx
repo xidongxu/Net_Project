@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>TX_INCLUDE_USER_DEFINE_FILE,NX_INCLUDE_USER_DEFINE_FILE,USE_HAL_DRIVER,STM32H750xx,FX_INCLUDE_USER_DEFINE_FILE,LX_INCLUDE_USER_DEFINE_FILE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../AZURE_RTOS/App;../NetXDuo/App;../NetXDuo/Target;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Include;../Drivers/BSP/Components/lan8742/;../Middlewares/ST/netxduo/common/drivers/ethernet/;../Middlewares/ST/netxduo/addons/auto_ip/;../Middlewares/ST/netxduo/common/inc/;../Middlewares/ST/netxduo/ports/cortex_m7/ac5/inc/;../Middlewares/ST/threadx/common/inc/;../Middlewares/ST/threadx/ports/cortex_m7/ac6/inc/;../FileX/App;../LevelX/App;../FileX/Target;../LevelX/Target;../Middlewares/ST/filex/common/inc/;../Middlewares/ST/filex/ports/generic/inc/;../Middlewares/ST/netxduo/addons/web/;../Middlewares/ST/levelx/common/inc/</IncludePath>
+              <IncludePath>../Core/Inc;../AZURE_RTOS/App;../NetXDuo/App;../NetXDuo/Target;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Include;../Drivers/BSP/Components/lan8742/;../Drivers/BSP/Components/w25qxx/;../Middlewares/ST/netxduo/common/drivers/ethernet/;../Middlewares/ST/netxduo/addons/auto_ip/;../Middlewares/ST/netxduo/common/inc/;../Middlewares/ST/netxduo/ports/cortex_m7/ac5/inc/;../Middlewares/ST/threadx/common/inc/;../Middlewares/ST/threadx/ports/cortex_m7/ac6/inc/;../FileX/App;../LevelX/App;../FileX/Target;../LevelX/Target;../Middlewares/ST/filex/common/inc/;../Middlewares/ST/filex/ports/generic/inc/;../Middlewares/ST/netxduo/addons/web/;../Middlewares/ST/levelx/common/inc/</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1163,6 +1163,11 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+            <File>
+              <FileName>W25Q256.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\BSP\Components\w25qxx\W25Q256.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -55118,5 +55123,14 @@
     </components>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>H7_NetxDuo_FileX</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>
