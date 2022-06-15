@@ -46,7 +46,7 @@ static uint64_t AppTaskNetXStk[APP_CFG_TASK_NETX_STK_SIZE / 8];
 #define IP_ADDR1          168
 #define IP_ADDR2          0
 #define IP_ADDR3          24
-#define  MAX_TCP_CLIENTS  255
+#define MAX_TCP_CLIENTS   255
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
