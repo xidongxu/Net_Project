@@ -1109,6 +1109,11 @@
           </GroupOption>
           <Files>
             <File>
+              <FileName>W25Q256.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\BSP\Components\w25qxx\W25Q256.c</FilePath>
+            </File>
+            <File>
               <FileName>lan8742.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Drivers/BSP/Components/lan8742/lan8742.c</FilePath>
@@ -1163,11 +1168,6 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
-            </File>
-            <File>
-              <FileName>W25Q256.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Drivers\BSP\Components\w25qxx\W25Q256.c</FilePath>
             </File>
           </Files>
         </Group>

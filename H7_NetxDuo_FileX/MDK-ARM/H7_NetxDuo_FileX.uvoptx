@@ -152,25 +152,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>114</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>../Core/Src/main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
           <LineNumber>186</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>-1878922872</Address>
+          <Address>-1878922856</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -182,11 +166,11 @@
           <Expression>\\H7_NetxDuo_FileX\../NetXDuo/App/app_netxduo.c\186</Expression>
         </Bp>
         <Bp>
-          <Number>2</Number>
+          <Number>1</Number>
           <Type>0</Type>
           <LineNumber>187</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>-1878922856</Address>
+          <Address>-1878922840</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -198,7 +182,7 @@
           <Expression>\\H7_NetxDuo_FileX\../NetXDuo/App/app_netxduo.c\187</Expression>
         </Bp>
         <Bp>
-          <Number>3</Number>
+          <Number>2</Number>
           <Type>0</Type>
           <LineNumber>1708</LineNumber>
           <EnabledFlag>1</EnabledFlag>
@@ -212,6 +196,22 @@
           <Filename>../Middlewares/ST/netxduo/common/drivers/ethernet/nx_stm32_eth_driver.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\H7_NetxDuo_FileX\../Middlewares/ST/netxduo/common/drivers/ethernet/nx_stm32_eth_driver.c\1708</Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>0</Type>
+          <LineNumber>19</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>-1879044910</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Drivers\BSP\Components\w25qxx\W25Q256.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\H7_NetxDuo_FileX\../Drivers/BSP/Components/w25qxx/W25Q256.c\19</Expression>
         </Bp>
       </Breakpoint>
       <Tracepoint>
@@ -803,8 +803,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>../Drivers/BSP/Components/lan8742/lan8742.c</PathWithFileName>
-      <FilenameWithoutPath>lan8742.c</FilenameWithoutPath>
+      <PathWithFileName>..\Drivers\BSP\Components\w25qxx\W25Q256.c</PathWithFileName>
+      <FilenameWithoutPath>W25Q256.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -815,8 +815,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Drivers\BSP\Components\w25qxx\W25Q256.c</PathWithFileName>
-      <FilenameWithoutPath>W25Q256.c</FilenameWithoutPath>
+      <PathWithFileName>../Drivers/BSP/Components/lan8742/lan8742.c</PathWithFileName>
+      <FilenameWithoutPath>lan8742.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

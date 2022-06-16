@@ -27,6 +27,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include "W25Q256.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -93,7 +94,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  __set_PRIMASK(0);
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -110,6 +111,11 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
   printf_Logo();
+  
+  int res = BSP_W25Q256_Init();
+  uint8_t ID[2] = { 0x00 };
+  BSP_W25Q256_Read_ID(ID);
+  printf("RES = %d, W25Q128 ID = { %02X, %02X } \r\n", res, ID[0], ID[1]);
   /* USER CODE END 2 */
 
   MX_ThreadX_Init();
