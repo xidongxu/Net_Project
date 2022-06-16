@@ -1,5 +1,5 @@
-#ifndef __W25Q256_H_
-#define __W25Q256_H_
+#ifndef __W25QXX_H_
+#define __W25QXX_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -16,11 +16,11 @@ extern "C" {
   * @{
   */
 
-/** @addtogroup W25Q256FV
+/** @addtogroup W25QXX
   * @{
   */
 
-/** @defgroup W25Q256FV_Exported_Types
+/** @defgroup W25QXX_Exported_Types
   * @{
   */
 
@@ -28,28 +28,28 @@ extern "C" {
   * @}
   */
 
-/** @defgroup W25Q256FV_Exported_Constants
+/** @defgroup W25QXX_Exported_Constants
   * @{
   */
 
 /**
-  * @brief  W25Q256FV Configuration
+  * @brief  W25QXX Configuration
   */
-#define W25Q256FV_FLASH_SIZE                  0x1000000 /* 128 MBits => 16MBytes */
-#define W25Q256FV_BLOCK_SIZE                  0x10000   /* 512 sectors of 64KBytes */
-#define W25Q256FV_SECTOR_SIZE                 0x1000    /* 4096 subsectors of 4kBytes */
-#define W25Q256FV_PAGE_SIZE                   0x100     /* 65536 pages of 256 bytes */
+#define W25QXX_FLASH_SIZE                  0x1000000 /* 128 MBits => 16MBytes */
+#define W25QXX_BLOCK_SIZE                  0x10000   /* 512 sectors of 64KBytes */
+#define W25QXX_SECTOR_SIZE                 0x1000    /* 4096 subsectors of 4kBytes */
+#define W25QXX_PAGE_SIZE                   0x100     /* 65536 pages of 256 bytes */
 
-#define W25Q256FV_DUMMY_CYCLES_READ           4
-#define W25Q256FV_DUMMY_CYCLES_READ_QUAD      10
+#define W25QXX_DUMMY_CYCLES_READ           4
+#define W25QXX_DUMMY_CYCLES_READ_QUAD      10
 
-#define W25Q256FV_BULK_ERASE_MAX_TIME         400000
-#define W25Q256FV_BLOCK_ERASE_MAX_TIME        5000
-#define W25Q256FV_SECTOR_ERASE_MAX_TIME       2000
-#define W25Q256_TIMEOUT_VALUE                 1000
+#define W25QXX_BULK_ERASE_MAX_TIME         400000
+#define W25QXX_BLOCK_ERASE_MAX_TIME        5000
+#define W25QXX_SECTOR_ERASE_MAX_TIME       2000
+#define W25QXX_TIMEOUT_VALUE                 1000
 
 /**
-  * @brief  W25Q256FV Commands
+  * @brief  W25QXX Commands
   */
 /* Reset Operations */
 #define RESET_ENABLE_CMD                     0x66
@@ -105,31 +105,31 @@ extern "C" {
 #define EXIT_4BYTE_ADDRESS_MODE              0xE9
 
 /* Flag Status Register */
-#define W25Q256FV_FSR_BUSY                  ((uint8_t)0x01)    /*!< busy */
-#define W25Q256FV_FSR_WREN                  ((uint8_t)0x02)    /*!< write enable */
-#define W25Q256FV_FSR_QE                    ((uint8_t)0x02)    /*!< quad enable */
-#define W25Q256_Enable() 			              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET)
-#define W25Q256_Disable() 		              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET)
-#define W25Q256_OK                          ((uint8_t)0x00)
-#define W25Q256_ERROR                       ((uint8_t)0x01)
-#define W25Q256_BUSY                        ((uint8_t)0x02)
-#define W25Q256_TIMEOUT				              ((uint8_t)0x03)
-uint8_t BSP_W25Q256_Init(void);
-uint8_t	BSP_W25Q256_Reset(void);
-uint8_t BSP_W25Q256_GetStatus(void);
-uint8_t BSP_W25Q256_WriteEnable(void);
-void    BSP_W25Q256_Read_ID(uint8_t *ID);
-uint8_t BSP_W25Q256_Read(uint8_t* pData, uint32_t ReadAddr, uint32_t Size);
-uint8_t BSP_W25Q256_Write(uint8_t* pData, uint32_t WriteAddr, uint32_t Size);
-uint8_t BSP_W25Q256_Erase_Sector(uint32_t Address);
-uint8_t BSP_W25Q256_Erase_Block(uint32_t Address);
-uint8_t BSP_W25Q256_Erase_Chip(void);
-uint8_t BSP_W25Q256_Enter4ByteAddressMode(void);
-uint8_t BSP_W25Q256_Exit4ByteAddressMode(void);
+#define W25QXX_FSR_BUSY                  ((uint8_t)0x01)    /*!< busy */
+#define W25QXX_FSR_WREN                  ((uint8_t)0x02)    /*!< write enable */
+#define W25QXX_FSR_QE                    ((uint8_t)0x02)    /*!< quad enable */
+#define W25QXX_Enable() 			              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET)
+#define W25QXX_Disable() 		              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET)
+#define W25QXX_OK                          ((uint8_t)0x00)
+#define W25QXX_ERROR                       ((uint8_t)0x01)
+#define W25QXX_BUSY                        ((uint8_t)0x02)
+#define W25QXX_TIMEOUT				              ((uint8_t)0x03)
+uint8_t BSP_W25QXX_Init(void);
+uint8_t	BSP_W25QXX_Reset(void);
+uint8_t BSP_W25QXX_GetStatus(void);
+uint8_t BSP_W25QXX_WriteEnable(void);
+void    BSP_W25QXX_Read_ID(uint8_t *ID);
+uint8_t BSP_W25QXX_Read(uint8_t* pData, uint32_t ReadAddr, uint32_t Size);
+uint8_t BSP_W25QXX_Write(uint8_t* pData, uint32_t WriteAddr, uint32_t Size);
+uint8_t BSP_W25QXX_Erase_Sector(uint32_t Address);
+uint8_t BSP_W25QXX_Erase_Block(uint32_t Address);
+uint8_t BSP_W25QXX_Erase_Chip(void);
+uint8_t BSP_W25QXX_Enter4ByteAddressMode(void);
+uint8_t BSP_W25QXX_Exit4ByteAddressMode(void);
 /**
   * @}
   */
-/** @defgroup W25Q256FV_Exported_Functions
+/** @defgroup W25QXX_Exported_Functions
   * @{
   */
 /**
@@ -147,6 +147,6 @@ uint8_t BSP_W25Q256_Exit4ByteAddressMode(void);
 #ifdef __cplusplus
 }
 #endif
-#endif /* __W25Q256_H */
+#endif /* __W25QXX_H */
 
 /********************************End of File************************************/

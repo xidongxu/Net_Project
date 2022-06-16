@@ -154,7 +154,7 @@
           <Type>0</Type>
           <LineNumber>186</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>-1878922856</Address>
+          <Address>-1878922800</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -170,7 +170,7 @@
           <Type>0</Type>
           <LineNumber>187</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>-1878922840</Address>
+          <Address>-1878922784</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -186,7 +186,7 @@
           <Type>0</Type>
           <LineNumber>1708</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>-1878995394</Address>
+          <Address>-1878995338</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -196,22 +196,6 @@
           <Filename>../Middlewares/ST/netxduo/common/drivers/ethernet/nx_stm32_eth_driver.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\H7_NetxDuo_FileX\../Middlewares/ST/netxduo/common/drivers/ethernet/nx_stm32_eth_driver.c\1708</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>19</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>-1879044910</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Drivers\BSP\Components\w25qxx\W25Q256.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\H7_NetxDuo_FileX\../Drivers/BSP/Components/w25qxx/W25Q256.c\19</Expression>
         </Bp>
       </Breakpoint>
       <Tracepoint>
@@ -792,7 +776,7 @@
 
   <Group>
     <GroupName>Drivers/BSP/Components</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -803,8 +787,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Drivers\BSP\Components\w25qxx\W25Q256.c</PathWithFileName>
-      <FilenameWithoutPath>W25Q256.c</FilenameWithoutPath>
+      <PathWithFileName>../Drivers/BSP/Components/lan8742/lan8742.c</PathWithFileName>
+      <FilenameWithoutPath>lan8742.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -815,8 +799,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>../Drivers/BSP/Components/lan8742/lan8742.c</PathWithFileName>
-      <FilenameWithoutPath>lan8742.c</FilenameWithoutPath>
+      <PathWithFileName>..\Drivers\BSP\Components\w25qxx\W25QXX.c</PathWithFileName>
+      <FilenameWithoutPath>W25QXX.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

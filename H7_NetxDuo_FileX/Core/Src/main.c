@@ -27,7 +27,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
-#include "W25Q256.h"
+#include "W25QXX.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -112,9 +112,9 @@ int main(void)
   /* USER CODE BEGIN 2 */
   printf_Logo();
   
-  int res = BSP_W25Q256_Init();
+  int res = BSP_W25QXX_Init();
   uint8_t ID[2] = { 0x00 };
-  BSP_W25Q256_Read_ID(ID);
+  BSP_W25QXX_Read_ID(ID);
   printf("RES = %d, W25Q128 ID = { %02X, %02X } \r\n", res, ID[0], ID[1]);
   /* USER CODE END 2 */
 
