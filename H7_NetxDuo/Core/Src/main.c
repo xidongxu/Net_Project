@@ -104,7 +104,6 @@ int main(void)
   MX_UART4_Init();
   MX_ETH_Init();
   MX_QUADSPI_Init();
-  
   /* USER CODE BEGIN 2 */
   W25QXX_ExitQPIMode();
   W25QXX_Reset();
