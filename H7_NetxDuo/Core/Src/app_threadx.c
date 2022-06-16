@@ -105,24 +105,41 @@ void MX_ThreadX_Init(void)
 }
 
 /* USER CODE BEGIN 1 */
+static void boot_environment_reset(void)
+{
+    uint8_t index = 0;
+    /* Disable global interrupts */
+    __set_PRIMASK(1);
+    /* Disable ICache and DCache */
+    SCB_DisableICache();
+    SCB_DisableDCache();
+    /* Disable all interrupts, clear all interrupt pending flags */
+    for (index = 0; index < 8; index++)
+    {
+        NVIC->ICER[index]=0xFFFFFFFF;
+        NVIC->ICPR[index]=0xFFFFFFFF;
+    }
+    /* Tick timer count clear */
+    SysTick->CTRL = 0;
+    SysTick->LOAD = 0;
+    SysTick->VAL  = 0;
+}
+
 void boot_jump_to_app(void)
 {
-  /* QSPI Flash Init */
+  /* Enable memory mapped mode, run on external flash */
   W25QXX_Init();
   W25Q_Memory_Mapped_Enable();
-  HAL_Delay(100);
-  __set_PRIMASK(1);
-  /* Deinit Interrupt And Jump to Application */
-  HAL_RCC_DeInit();
-  HAL_TIM_Base_DeInit(&htim1);
-  HAL_ETH_DeInit(&heth);
-  
-  SysTick->VAL = 0;
-  __set_CONTROL(0);
-
+  /* Boot environment deinit */
+  boot_environment_reset();
+  /* The first address + 4 is the address of the reset interrupt service routine */
   JumpToApplication = (pFunction)(*(__IO uint32_t *)(APPLICATION_ADDRESS + 4));
+  /* Set Main Stack Pointer */
+  __set_PSP(*(__IO uint32_t *)APPLICATION_ADDRESS);
   __set_MSP(*(__IO uint32_t *)APPLICATION_ADDRESS);
-
+  /* Set to privileged mode, use MSP pointer */
+  __set_CONTROL(0);
+  /* Jump to APP */
   JumpToApplication();
 }
 

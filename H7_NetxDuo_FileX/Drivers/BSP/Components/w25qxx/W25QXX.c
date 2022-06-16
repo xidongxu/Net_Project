@@ -6,6 +6,7 @@
  */
 
 #include "W25QXX.h"
+
 extern SPI_HandleTypeDef hspi1;
 
 /**
@@ -48,9 +49,7 @@ uint8_t BSP_W25QXX_Reset(void)
       return W25QXX_TIMEOUT;
     }
   }
-
   return W25QXX_OK;
-
 }
 
 /**
@@ -80,7 +79,6 @@ uint8_t BSP_W25QXX_GetStatus(void)
   }
 }
 
-
 /**
   * @brief  This function send a Enter 4-Byte Address Mode (B7h)
   * @retval None
@@ -106,11 +104,8 @@ uint8_t BSP_W25QXX_Enter4ByteAddressMode(void)
       return W25QXX_TIMEOUT;
     }
   }
-
   return W25QXX_OK;
 }
-
-
 
 /**
   * @brief  This function send a Exit 4-Byte Address Mode (E9h)
@@ -137,13 +132,8 @@ uint8_t BSP_W25QXX_Exit4ByteAddressMode(void)
       return W25QXX_TIMEOUT;
     }
   }
-
   return W25QXX_OK;
 }
-
-
-
-
 
 /**
   * @brief  This function send a Write Enable and wait it is effective.
@@ -160,7 +150,7 @@ uint8_t BSP_W25QXX_WriteEnable(void)
   HAL_SPI_Transmit(&hspi1, cmd, 1, W25QXX_TIMEOUT_VALUE);
   /*Deselect the FLASH: Chip Select high */
   W25QXX_Disable();
-
+  
   /* Wait the end of Flash writing */
   while(BSP_W25QXX_GetStatus() == W25QXX_BUSY)
   {
@@ -170,7 +160,6 @@ uint8_t BSP_W25QXX_WriteEnable(void)
       return W25QXX_TIMEOUT;
     }
   }
-
   return W25QXX_OK;
 }
 
@@ -189,7 +178,6 @@ void BSP_W25QXX_Read_ID(uint8_t *ID)
   /* Reception of the data */
   HAL_SPI_Receive(&hspi1, ID, 2, W25QXX_TIMEOUT_VALUE);
   W25QXX_Disable();
-
 }
 
 /**
@@ -407,9 +395,8 @@ uint8_t BSP_W25QXX_Erase_Block(uint32_t Address)
   */
 uint8_t BSP_W25QXX_Erase_Chip(void)
 {
-  uint8_t cmd[4] = { 0x00 };
+  uint8_t cmd[4] = { CHIP_ERASE_CMD, 0x00, 0x00, 0x00 };
   uint32_t tickstart = HAL_GetTick();
-  cmd[0] = CHIP_ERASE_CMD;
 
   /* Enable write operations */
   BSP_W25QXX_WriteEnable();
@@ -432,7 +419,5 @@ uint8_t BSP_W25QXX_Erase_Chip(void)
   }
   return W25QXX_OK;
 }
-
-
 
 /********************************End of File************************************/
