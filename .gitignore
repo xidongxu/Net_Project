@@ -20,3 +20,6 @@
 /H7_NetxDuo_FileX/MDK-ARM/H7_NetxDuo_FileX/*.sct
 /H7_NetxDuo_FileX/MDK-ARM/H7_NetxDuo_FileX/*.dep
 /H7_NetxDuo_FileX/MDK-ARM/*.xdx
+/H7_NetxDuo/EWARM/settings/*.dbgdt
+/H7_NetxDuo/EWARM/settings/*.dnx
+/H7_NetxDuo/EWARM/settings/*.wsdt
