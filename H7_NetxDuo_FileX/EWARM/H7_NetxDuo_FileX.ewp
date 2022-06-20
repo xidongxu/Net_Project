@@ -62,7 +62,7 @@
                 </option>
                 <option>
                     <name>RTDescription</name>
-                    <state>Use the full configuration of the C/C++ runtime library. Full locale interface, C locale, file descriptor support, multibytes in printf and scanf, and hex floats in strtod.</state>
+                    <state>A complete configuration of the C/C++14 runtime library. Full locale interface, C locale, file descriptor support, multibytes in printf and scanf, and hex floats in strtod.</state>
                 </option>
                 <option>
                     <name>OGProductVersion</name>
@@ -367,6 +367,7 @@
                     <state>$PROJ_DIR$/../Middlewares/ST/filex/common/inc/</state>
                     <state>$PROJ_DIR$/../Middlewares/ST/filex/ports/generic/inc/</state>
                     <state>$PROJ_DIR$/../Drivers/BSP/Components/lan8742/</state>
+                    <state>$PROJ_DIR$/../Drivers/BSP/Components/w25qxx/</state>
                     <state>$PROJ_DIR$/../Middlewares/ST/netxduo/common/drivers/ethernet/</state>
                     <state>$PROJ_DIR$/../Middlewares/ST/netxduo/addons/auto_ip/</state>
                     <state>$PROJ_DIR$/../Middlewares/ST/netxduo/common/inc/</state>
@@ -1183,6 +1184,9 @@
                 <name>Components</name>
                 <file>
                     <name>$PROJ_DIR$\..\Drivers\BSP\Components\lan8742\lan8742.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Drivers\BSP\Components\w25qxx\W25QXX.c</name>
                 </file>
             </group>
         </group>
