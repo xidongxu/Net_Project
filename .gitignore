@@ -24,3 +24,6 @@
 /H7_NetxDuo/EWARM/settings/*.dnx
 /H7_NetxDuo/EWARM/settings/*.wsdt
 /H7_NetxDuo/EWARM/*.dep
+/H7_NetxDuo_FileX/EWARM/H7_NetxDuo_FileX.dep
+/H7_NetxDuo_FileX/EWARM/settings/*.wsdt
+/H7_NetxDuo_FileX/EWARM/settings/*.dnx
