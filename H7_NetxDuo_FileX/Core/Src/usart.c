@@ -145,23 +145,57 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
+
+#ifdef __ICCARM__
+#include <LowLevelIOInterface.h>
+#pragma module_name = "?__write"
+static int _LowLevelPutchar(int ch)
+{
+  HAL_UART_Transmit(&huart4, (uint8_t *)&ch, 1, 0xFFFF);
+  return ch;
+}
+
+size_t __write(int handle, const unsigned char * buffer, size_t size)
+{
+  size_t nChars = 0;
+  if (buffer == 0)
+  {
+    return 0;
+  }
+  if (handle != _LLIO_STDOUT && handle != _LLIO_STDERR)
+  {
+    return _LLIO_ERROR;
+  }
+  for ( ; size != 0; --size)
+  {
+    if (_LowLevelPutchar(*buffer++) < 0)
+    {
+      return _LLIO_ERROR;
+    }
+    ++nChars;
+  }
+  return nChars;
+}
+#else
 int fputc(int ch, FILE *f)
 {
   HAL_UART_Transmit(&huart4, (uint8_t *)&ch, 1, 0xFFFF);
   return (ch);
 }
+#endif
 
 int fpush(uint8_t *data,uint32_t size)
 {
-	HAL_StatusTypeDef status = HAL_OK;
-	status = HAL_UART_Transmit(&huart4, data, size, 0xFFFF);
-	if(status == HAL_OK)
-	{
-		return size;
-	}
-	else
-	{
-		return 0;
-	}
+  HAL_StatusTypeDef status = HAL_OK;
+  status = HAL_UART_Transmit(&huart4, data, size, 0xFFFF);
+  if(status == HAL_OK)
+  {
+    return size;
+  }
+  else
+  {
+    return 0;
+  }
 }
+
 /* USER CODE END 1 */
