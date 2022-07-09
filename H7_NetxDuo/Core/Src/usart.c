@@ -176,6 +176,12 @@ size_t __write(int handle, const unsigned char * buffer, size_t size)
   }
   return nChars;
 }
+#elif __GNUC__
+int __io_putchar(int ch)
+{
+  HAL_UART_Transmit(&huart4, (uint8_t *)&ch, 1, 0xFFFF);
+  return ch;
+}
 #else
 int fputc(int ch, FILE *f)
 {
