@@ -145,8 +145,13 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
-
-#ifdef __ICCARM__
+#if defined(__ARMCC_VERSION) || defined(__CC_ARM) || defined(__CLANG_ARM)
+int fputc(int ch, FILE *f)
+{
+  HAL_UART_Transmit(&huart4, (uint8_t *)&ch, 1, 0xFFFF);
+  return (ch);
+}
+#elif defined(__ICCARM__)
 #include <LowLevelIOInterface.h>
 #pragma module_name = "?__write"
 static int _LowLevelPutchar(int ch)
@@ -176,18 +181,14 @@ size_t __write(int handle, const unsigned char * buffer, size_t size)
   }
   return nChars;
 }
-#elif __GNUC__
+#elif defined(__GNUC__)
 int __io_putchar(int ch)
 {
   HAL_UART_Transmit(&huart4, (uint8_t *)&ch, 1, 0xFFFF);
   return ch;
 }
 #else
-int fputc(int ch, FILE *f)
-{
-  HAL_UART_Transmit(&huart4, (uint8_t *)&ch, 1, 0xFFFF);
-  return (ch);
-}
+#error "Please specify a compiler!"
 #endif
 
 int fpush(uint8_t *data,uint32_t size)
